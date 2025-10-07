@@ -27,7 +27,7 @@ const createAllTables = async () => {
     await db.query(`CREATE TABLE books(
         book_id SERIAL PRIMARY KEY,
         book_name VARCHAR NOT NULL,
-        publication_date DATE NOT NULL,
+        publication_date INT NOT NULL,
         description TEXT NOT NULL,
         author_id INT NOT NULL REFERENCES authors(author_id),
         genre VARCHAR NOT NULL REFERENCES genres(genre),
