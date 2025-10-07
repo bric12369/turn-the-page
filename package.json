@@ -1,0 +1,22 @@
+{
+  "name": "turn-the-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup-db": "psql -f ./db/setup.sql",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bric12369/turn-the-page.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/bric12369/turn-the-page/issues"
+  },
+  "homepage": "https://github.com/bric12369/turn-the-page#readme"
+}
