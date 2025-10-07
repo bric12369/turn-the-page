@@ -1,0 +1,22 @@
+[
+    {
+        "genre": "Fantasy",
+        "description": "Fantasy books transport readers to magical realms filled with mythical creatures, epic quests, and powerful heroes. From ancient prophecies to enchanted lands, the genre sparks imagination and wonder—perfect for those who crave adventure, mystery, and a touch of the impossible in every page. Let the journey begin!"
+    },
+    {
+        "genre": "Action",
+        "description": "High-octane reads packed with fast-paced plots, daring heroes, and relentless danger. From explosive battles to heart-pounding chases, these stories keep you on the edge of your seat—perfect for thrill-seekers who love adrenaline-fueled adventures and nonstop excitement. Buckle up, it's going to get intense."
+    },
+    {
+        "genre": "Horror",
+        "description": "These stories delve into the dark and unsettling, stirring fear through eerie atmospheres, chilling mysteries, and the unknown. From haunted houses to lurking monsters, these stories are designed to thrill and disturb—perfect for readers who enjoy a good scare and the spine-tingling thrill of the macabre."
+    },
+    {
+        "genre": "LGBTQ+",
+        "description": "These books explore the vibrant lives, challenges, and joys of queer characters. Through stories of identity, growth, and connection, they offer authentic perspectives that inspire empathy and celebrate diversity. These narratives highlight the strength and resilience found in living openly and embracing who you truly are."
+    },
+    {
+        "genre": "Sci-Fi",
+        "description": "Narratives which take you beyond the stars and into the future, exploring advanced technology, space travel, and alternate realities. These imaginative stories challenge what's possible, blending scientific ideas with thrilling adventures that question humanity's place in the universe."
+    }
+]

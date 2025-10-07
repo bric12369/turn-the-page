@@ -1,0 +1,22 @@
+[
+    {
+        "condition": "New",
+        "description": "Pristine and unread. This book is fresh from the publisher and ready to offer you a flawless reading experience."
+    },
+    {
+        "condition": "Like New",
+        "description": "Almost flawless with no obvious signs of usage. This book is perfect for readers who want an as new copy without the price."
+    },
+    {
+        "condition": "Very Good",
+        "description": "A well-cared-for book with minor signs of use. The cover and pages may show slight wear, but there are no major defects. Clean, intact and ready to provide a great reading experience."
+    },
+    {
+        "condition": "Good",
+        "description": "A pre-loved book with some visible wear such as light creases, minor scuffs, or faint markings. Despite these, the book remains complete and fully readable, offering solid value for everyday reading."
+    },
+    {
+        "condition": "Fair",
+        "description": "A well-loved book with obvious signs of wear, such as worn edges, creased pages, or writing inside, but still intact and complete. Perfect budget-friendly option if you don't mind some imperfections."
+    }
+]
