@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/bric12369/turn-the-page/issues"
   },
-  "homepage": "https://github.com/bric12369/turn-the-page#readme"
+  "homepage": "https://github.com/bric12369/turn-the-page#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3"
+  }
 }
