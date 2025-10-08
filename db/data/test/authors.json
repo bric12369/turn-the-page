@@ -1,0 +1,37 @@
+[
+    {
+        "first_name": "Alice",
+        "surname": "Osman",
+        "avatar": "example.com/images/aliceosman.jpg"
+    },
+    {
+        "first_name": "H.G.",
+        "surname": "Wells",
+        "avatar": "example.com/images/h.g.wells.jpg"
+    },
+    {
+        "first_name": "Stephen",
+        "surname": "King",
+        "avatar": "example.com/images/stephenking.jpg"
+    },
+    {
+        "first_name": "Shirley",
+        "surname": "Jackson",
+        "avatar": "example.com/images/shirleyjackson.jpg"
+    },
+    {
+        "first_name": "J.R.R.",
+        "surname": "Tolkien",
+        "avatar": "example.com/images/j.r.r.tolkien.jpg"
+    },
+    {
+        "first_name": "George R.R.",
+        "surname": "Martin",
+        "avatar": "example.com/images/georger.r.martin.jpg"
+    },
+    {
+        "first_name": "Anthony",
+        "surname": "Horowitz",
+        "avatar": "example.com/images/anthonyhorowitz.jpg"
+    }
+]
