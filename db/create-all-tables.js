@@ -32,6 +32,7 @@ const createAllTables = async () => {
         author_id INT NOT NULL REFERENCES authors(author_id),
         genre VARCHAR NOT NULL REFERENCES genres(genre),
         condition VARCHAR NOT NULL REFERENCES conditions(condition),
+        isbn VARCHAR(13) NOT NULL,
         price DECIMAL(4, 2) NOT NULL
         )`)
 }

@@ -1,65 +1,72 @@
 [
     {
         "book_name": "Heartstopper Vol. 1",
-        "publication_date": "2020",
+        "publication_date": "2018",
         "description": "Shy and softhearted Charlie Spring sits next to rugby player Nick Nelson in class one morning. A warm and intimate friendship follows, and that soon develops into something more for Charlie, who doesn't think he has a chance. But Nick is struggling with feelings of his own, and as the two grow closer and take on the ups and downs of high school, they come to understand the surprising and delightful ways in which love works.",
         "author": "Alice Osman",
         "genre": "LGBTQ+",
         "condition": "Like New",
+        "isbn": "9781527225336",
         "price": "7.99"
     },
     {
         "book_name": "The War of the Worlds",
-        "publication_date": "2018",
+        "publication_date": "2006",
         "description": "From the planet of war they came to conquer the Earth... The night after a shooting star is seen streaking across the sky, a cylinder is discovered on Horsell Common. Fascinated and exhilarated, the local people approach the mysterious object armed with nothing more than a white flag. But when gruesome alien creatures emerge armed with all-destroying heat-rays, their rashness turns rapidly to fear. As the rays blaze towards them, it soon becomes clear they have no choice but to flee - or die. The forces of the Earth, however, may prove harder to beat than they at first appear ...",
         "author": "H. G. Wells",
         "genre": "Sci-Fi",
         "condition": "New",
+        "isbn": "9780141026008",
         "price": "14.99"
     },
     {
         "book_name": "The Shining",
-        "publication_date": "2007",
+        "publication_date": "1988",
         "description": "One of the true classics of horror fiction, The Shining is regarded as one of Stephen King's masterpieces. Danny is only five years old, but in the words of old Mr Hallorann he is a 'shiner', aglow with psychic voltage. When his father becomes caretaker of the Overlook Hotel, Danny's visions grow out of control. As winter closes in and blizzards cut them off, the hotel seems to develop a life of its own. It is meant to be empty. So who is the lady in Room 217 and who are the masked guests going up and down in the elevator? And why do the hedges shaped like animals seem so alive? Somewhere, somehow, there is an evil force in the hotel - and that, too, is beginning to shine...",
         "author": "Stephen King",
         "genre": "Horror",
         "condition": "Good",
+        "isbn": "9780340797662",
         "price": "6.99"
     },
     {
         "book_name": "The Haunting of Hill House",
-        "publication_date": "2009",
+        "publication_date": "2011",
         "description": "The best-known of Shirley Jackson's novels, and the inspiration for writers such as Neil Gaiman and Stephen King, The Haunting of Hill House is a chilling story of the power of fear. Four seekers have arrived at the rambling old pile known as Hill House: Dr. Montague, an occult scholar looking for solid evidence of psychic phenomena; Theodora, his lovely assistant; Luke, the future inheritor of the estate; and Eleanor, a friendless, fragile young woman with a dark past. As they begin to cope with horrifying occurrences beyond their control or understanding, they cannot possibly know what lies ahead. For Hill House is gathering its powers - and soon it will choose one of them to make its own. Now a major Netflix series,The Haunting of Hill House is a powerful work of slow-burning psychological horror.",
         "author": "Shirley Jackson",
         "genre": "Horror",
         "condition": "Very Good",
+        "isbn": "9781445836348",
         "price": "8.99"
     },
     {
-        "book_name": "The Hobbit",
+        "book_name": "The Hobbit: 75th Anniversary Edition",
         "publication_date": "2011",
-        "description": "The classic bestseller behind this year's biggest movie, this definitive paperback edition features nine illustrations and two maps drawn by J.R.R. Tolkien, and a preface by Christopher Tolkien. Bilbo Baggins is a hobbit who enjoys a comfortable, unambitious life, rarely travelling further than the pantry of his hobbit-hole in Bag End. But his contentment is disturbed when the wizard, Gandalf, and a company of thirteen dwarves arrive on his doorstep one day to whisk him away on an unexpected journey `there and back again'. They have a plot to raid the treasure hoard of Smaug the Magnificent, a large and very dangerous dragon... The prelude to The Lord of the Rings, The Hobbit has sold many millions of copies since its publication in 1937, establishing itself as one of the most beloved and influential books of the twentieth century.",
+        "description": "Bilbo Baggins is a hobbit who enjoys a comfortable, unambitious life, rarely travelling further than the pantry of his hobbit-hole in Bag End. But his contentment is disturbed when the wizard, Gandalf, and a company of thirteen dwarves arrive on his doorstep one day to whisk him away on an unexpected journey 'there and back again'. They have a plot to raid the treasure hoard of Smaug the Magnificent, a large and very dangerous dragon… The prelude to The Lord of the Rings, The Hobbit has sold many millions of copies since its publication in 1937, establishing itself as one of the most beloved and influential books of the twentieth century.",
         "author": "J. R. R. Tolkien",
         "genre": "Fantasy",
         "condition": "Fair",
-        "price": "4.99"
+        "isbn": "9780261103344",
+        "price": "11.99"
     },
     {
         "book_name": "A Game of Thrones",
-        "publication_date": "2011",
+        "publication_date": "2005",
         "description": "Summers span decades. Winter can last a lifetime. And the struggle for the Iron Throne has begun. As Warden of the north, Lord Eddard Stark counts it a curse when King Robert bestows on him the office of the Hand. His honour weighs him down at court where a true man does what he will, not what he must ... and a dead enemy is a thing of beauty. The old gods have no power in the south, Stark's family is split and there is treachery at court. Worse, the vengeance-mad heir of the deposed Dragon King has grown to maturity in exile in the Free Cities. He claims the Iron Throne.",
         "author": "George R. R. Martin",
         "genre": "Fantasy",
         "condition": "Like New",
+        "isbn": "9780553573404",
         "price": "8.49"
     },
     {
         "book_name": "Stormbreaker - Alex Rider",
-        "publication_date": "2005",
+        "publication_date": "2015",
         "description": "In the first book in the number one bestselling Alex Rider series by Anthony Horowitz, fourteen-year-old Alex is forcibly recruited into MI6. Armed with secret gadgets, he is sent to investigate Herod Sayle, a man who is offering state-of-the-art Stormbreaker computers to every school in the country. But the teenage spy soon finds himself in mortal danger.",
         "author": "Anthony Horowitz",
         "genre": "Action",
         "condition": "Good",
+        "isbn": "9781406364842",
         "price": "5.99"
     }
 ]
