@@ -12,6 +12,10 @@ const insertAllData = async () => {
         return [g.genre, g.description]
     })
 
+    const conditionsValues = conditionsData.map(c => {
+        return [c.condition, c.description]
+    })
+
     await db.query(
         pgFormat(
             `INSERT INTO authors (first_name, surname, avatar) VALUES %L`,
@@ -22,6 +26,13 @@ const insertAllData = async () => {
         pgFormat(
             `INSERT INTO genres (genre, description) VALUES %L`,
             genresValues
+        )
+    )
+
+    await db.query(
+        pgFormat(
+            `INSERT INTO conditions (condition, description) VALUES %L`,
+            conditionsValues
         )
     )
 }
