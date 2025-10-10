@@ -1,5 +1,10 @@
 const app = require('../app')
+const db = require('../db/connection')
 const request = require('supertest')
+
+afterAll(() => {
+    db.end()
+})
 
 describe('app', () => {
     describe('GET /api/books', () => {
