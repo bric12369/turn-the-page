@@ -19,6 +19,14 @@ describe('app', () => {
             expect(body.books[0].author).toBe('Alice Osman')
             expect(body.books[0].isbn).toBe('9781527225336')
             expect(body.books[0].price).toBe('7.99')
+        })
+        describe('Queries', () => {
+            describe('filter', () => {
+                test('?filter=book_name orders the books alphabetically', async () => {
+                    const { body } = await request(app).get('/api/books?filter=book_name').expect(200)
+                    expect(body.books[0].book_name).toBe('A Game of Thrones')
+                })
+            })
         })       
     })
 })
