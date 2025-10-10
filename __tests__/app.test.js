@@ -31,6 +31,18 @@ describe('app', () => {
                     expect(body.books[0].book_name).toBe('Stormbreaker - Alex Rider')                    
                 })
             })
+            describe('order', () => {
+                test('?order=desc when added to book_name filter filters books in reverse alphabetical order', async () => {
+                    const { body } = await request(app).get('/api/books?filter=book_name&order=desc').expect(200)
+                    expect(body.books[0].book_name).toBe('The War of the Worlds')
+                    expect(body.books[1].book_name).toBe('The Shining')
+                })
+                test('?order=desc when added to price filter returns books from most expensive to least', async () => {
+                    const { body } = await request(app).get('/api/books?filter=price&order=desc').expect(200)
+                    expect(body.books[0].book_name).toBe('The War of the Worlds')
+                    expect(body.books[1].book_name).toBe('The Hobbit: 75th Anniversary Edition')
+                })
+            })
         })       
     })
 })
