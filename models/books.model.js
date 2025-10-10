@@ -2,7 +2,7 @@ const db = require('../db/connection')
 
 const fetchAllBooks = async (filter, order) => {
 
-    const validFilters = ['book_name', 'price']
+    const validFilters = ['book_name', 'price', 'author']
     const orderClause = order?.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
 
     let query = `SELECT book_name,

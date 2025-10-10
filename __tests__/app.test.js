@@ -30,6 +30,10 @@ describe('app', () => {
                     const { body } = await request(app).get('/api/books?filter=price').expect(200)
                     expect(body.books[0].book_name).toBe('Stormbreaker - Alex Rider')                    
                 })
+                test('?filter=author orders alphabetically by author name', async () => {
+                    const { body } = await request(app).get('/api/books?filter=author').expect(200)
+                    expect(body.books[0].author).toBe('Alice Osman')   
+                })
             })
             describe('order', () => {
                 test('?order=desc when added to book_name filter filters books in reverse alphabetical order', async () => {
@@ -41,6 +45,11 @@ describe('app', () => {
                     const { body } = await request(app).get('/api/books?filter=price&order=desc').expect(200)
                     expect(body.books[0].book_name).toBe('The War of the Worlds')
                     expect(body.books[1].book_name).toBe('The Hobbit: 75th Anniversary Edition')
+                })
+                test('?order=desc when added to author filter returns books by author in reverse alphabetical order', async () => {
+                    const { body } = await request(app).get('/api/books?filter=author&order=desc').expect(200)
+                    console.log(body)
+                    expect(body.books[0].author).toBe('Stephen King')
                 })
             })
         })       
