@@ -2,7 +2,7 @@ const db = require('../db/connection')
 
 const fetchAllBooks = async (filter) => {
 
-    const validFilters = ['book_name']
+    const validFilters = ['book_name', 'price']
 
     let query = `SELECT book_name,
         publication_date,

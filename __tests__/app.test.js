@@ -26,6 +26,10 @@ describe('app', () => {
                     const { body } = await request(app).get('/api/books?filter=book_name').expect(200)
                     expect(body.books[0].book_name).toBe('A Game of Thrones')
                 })
+                test('?filter=price orders the books by price', async () => {
+                    const { body } = await request(app).get('/api/books?filter=price').expect(200)
+                    expect(body.books[0].book_name).toBe('Stormbreaker - Alex Rider')                    
+                })
             })
         })       
     })
