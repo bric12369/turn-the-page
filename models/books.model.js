@@ -2,6 +2,10 @@ const db = require('../db/connection')
 
 const fetchAllBooks = async (sort, order) => {
 
+    if (!sort && order && order.toLowerCase() === 'desc') {
+        return Promise.reject({status: 400, msg: 'Bad Request: Cannot specify order without sort filter'})
+    }
+
     const validSorts = ['book_name', 'price', 'author']
     const orderClause = order?.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
 

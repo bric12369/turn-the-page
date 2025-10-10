@@ -57,6 +57,10 @@ describe('app', () => {
                     const { body: body2 } = await request(app).get('/api/books?sort=book_name&order=desc').expect(200)
                     expect(body2.books[body2.books.length-1].book_name).toBe('A Game of Thrones')
                 })
+                test('400 bad request is thrown when order=desc is provided without a sort value', async () => {
+                    const { body } = await request(app).get('/api/books?order=desc').expect(400)
+                    expect(body.msg).toBe('Bad Request: Cannot specify order without sort filter')
+                })
             })
         })       
     })
