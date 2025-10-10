@@ -51,6 +51,12 @@ describe('app', () => {
                     console.log(body)
                     expect(body.books[0].author).toBe('Stephen King')
                 })
+                test('?order only accepts desc as a valid value, otherwise asc is default', async () => {
+                    const { body } = await request(app).get('/api/books?sort=book_name&order=invalid-value').expect(200)
+                    expect(body.books[0].book_name).toBe('A Game of Thrones')
+                    const { body: body2 } = await request(app).get('/api/books?sort=book_name&order=desc').expect(200)
+                    expect(body2.books[body2.books.length-1].book_name).toBe('A Game of Thrones')
+                })
             })
         })       
     })
