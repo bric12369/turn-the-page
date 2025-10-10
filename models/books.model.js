@@ -1,8 +1,8 @@
 const db = require('../db/connection')
 
-const fetchAllBooks = async (filter, order) => {
+const fetchAllBooks = async (sort, order) => {
 
-    const validFilters = ['book_name', 'price', 'author']
+    const validSorts = ['book_name', 'price', 'author']
     const orderClause = order?.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
 
     let query = `SELECT book_name,
@@ -13,7 +13,7 @@ const fetchAllBooks = async (filter, order) => {
         FROM books
         JOIN authors on books.author_id = authors.author_id`
 
-    if (validFilters.includes(filter)) query += ` ORDER BY ${filter} ${orderClause}`
+    if (validSorts.includes(sort)) query += ` ORDER BY ${sort} ${orderClause}`
     
     const { rows } = await db.query(query)
 

@@ -1,8 +1,8 @@
 const { fetchAllBooks } = require("../models/books.model")
 
 const getAllBooks = async (req, res) => {
-        const { filter, order } = req.query
-        const books = await fetchAllBooks(filter, order)
+        const { sort, order } = req.query
+        const books = await fetchAllBooks(sort, order)
         res.send({ books })
 }
 
