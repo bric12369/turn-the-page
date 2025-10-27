@@ -1,4 +1,4 @@
-const { fetchAllBooks } = require("../models/books.model")
+const { fetchAllBooks, fetchSingleBook } = require("../models/books.model")
 
 const getAllBooks = async (req, res, next) => {
     try {
@@ -10,4 +10,10 @@ const getAllBooks = async (req, res, next) => {
     }
 }
 
-module.exports = { getAllBooks }
+const getSingleBook = async (req, res) => {
+    const { id } = req.params
+    const book = await fetchSingleBook(id)
+    res.send({ book })
+}
+
+module.exports = { getAllBooks, getSingleBook }

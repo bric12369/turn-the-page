@@ -30,4 +30,25 @@ const fetchAllBooks = async (sort, order, author_id) => {
     return rows
 }
 
-module.exports = { fetchAllBooks }
+const fetchSingleBook = async (id) => {
+    
+    const { rows } = await db.query(`SELECT book_name,
+        publication_date,
+        books.description AS description,
+        CONCAT(authors.first_name, ' ', authors.surname) AS author,
+        genre,
+        books.condition AS condition,
+        conditions.description AS condition_description,
+        isbn,
+        price
+        FROM books
+        JOIN authors ON books.author_id = authors.author_id
+        JOIN conditions on books.condition = conditions.condition
+        WHERE book_id = $1`,
+        [id]
+    )
+
+    return rows
+}
+
+module.exports = { fetchAllBooks, fetchSingleBook }
