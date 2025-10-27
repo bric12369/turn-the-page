@@ -1,6 +1,6 @@
 const db = require('../db/connection')
 
-const fetchAllBooks = async (sort, order) => {
+const fetchAllBooks = async (sort, order, author_id) => {
 
     if (!sort && order && order.toLowerCase() === 'desc') {
         return Promise.reject({status: 400, msg: 'Bad Request: Cannot specify order without sort filter'})
@@ -17,9 +17,10 @@ const fetchAllBooks = async (sort, order) => {
         FROM books
         JOIN authors on books.author_id = authors.author_id`
 
+    if (author_id) query += ` WHERE authors.author_id = $1`
     if (validSorts.includes(sort)) query += ` ORDER BY ${sort} ${orderClause}`
     
-    const { rows } = await db.query(query)
+    const { rows } = await db.query(query, [author_id])
 
     return rows
 }
