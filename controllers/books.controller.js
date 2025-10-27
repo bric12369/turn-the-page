@@ -10,10 +10,14 @@ const getAllBooks = async (req, res, next) => {
     }
 }
 
-const getSingleBook = async (req, res) => {
-    const { id } = req.params
-    const book = await fetchSingleBook(id)
-    res.send({ book })
+const getSingleBook = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const book = await fetchSingleBook(id)
+        res.send({ book })        
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getAllBooks, getSingleBook }

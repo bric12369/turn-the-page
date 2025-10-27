@@ -75,7 +75,7 @@ describe('app', () => {
         })       
     })
     describe('GET /api/books/:id', () => {
-        test.only('GET request to /api/books/:id returns a single book with matching id with the following properties: book_name, publication date, description, author, genre, condition, condition_description, isbn, price', async () => {
+        test('GET request to /api/books/:id returns a single book with matching id with the following properties: book_name, publication date, description, author, genre, condition, condition_description, isbn, price', async () => {
             const { body } = await request(app).get('/api/books/1').expect(200)
             expect(body.book.length).toBe(1)
             expect(body.book[0].book_name).toBe('Heartstopper Vol. 1')
@@ -87,6 +87,10 @@ describe('app', () => {
             expect(body.book[0].condition_description).toBe('Almost flawless with no obvious signs of usage. This book is perfect for readers who want an as new copy without the price.')
             expect(body.book[0].isbn).toBe('9781527225336')
             expect(body.book[0].price).toBe('7.99')
+        })
+        test('Throws 400 bad request error when given an invalid id', async () => {
+            const { body } = await request(app).get('/api/books/NaN').expect(400)
+            expect(body.msg).toBe('Bad Request: Invalid input')
         })
     })
 })
