@@ -6,6 +6,8 @@ const fetchAllBooks = async (sort, order, author_id) => {
         return Promise.reject({status: 400, msg: 'Bad Request: Cannot specify order without sort filter'})
     }
 
+    const values = []
+
     const validSorts = ['book_name', 'price', 'author']
     const orderClause = order?.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
 
@@ -17,10 +19,13 @@ const fetchAllBooks = async (sort, order, author_id) => {
         FROM books
         JOIN authors on books.author_id = authors.author_id`
 
-    if (author_id) query += ` WHERE authors.author_id = $1`
+    if (author_id) {
+        values.push(author_id)
+        query += ` WHERE authors.author_id = $1`
+    } 
     if (validSorts.includes(sort)) query += ` ORDER BY ${sort} ${orderClause}`
     
-    const { rows } = await db.query(query, [author_id])
+    const { rows } = await db.query(query, values)
 
     return rows
 }

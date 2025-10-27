@@ -62,7 +62,7 @@ describe('app', () => {
                 })
             })
             describe('author_id', () => {
-                test.only('?author_id filters books by author id', async () => {
+                test('?author_id filters books by author id', async () => {
                     const { body } = await request(app).get('/api/books?author_id=1').expect(200)
                     expect(body.books.length).toBe(1)
                     expect(body.books[0].book_name).toBe('Heartstopper Vol. 1')
