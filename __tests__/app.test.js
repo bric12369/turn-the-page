@@ -67,6 +67,10 @@ describe('app', () => {
                     expect(body.books.length).toBe(1)
                     expect(body.books[0].book_name).toBe('Heartstopper Vol. 1')
                 })
+                test('400 bad request is thrown when author_id is invalid', async () => {
+                    const { body } = await request(app).get('/api/books?author_id=NaN').expect(400)
+                    expect(body.msg).toBe('Bad Request: Invalid input')
+                })
             })
         })       
     })
