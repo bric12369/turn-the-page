@@ -96,4 +96,9 @@ describe('app', () => {
             expect(body.msg).toBe('Not found')
         })
     })
+    describe('GET /api/authors', () => {
+        test('GET request to /api/authors returns an array of all authors, each with the following properties: first_name, surname, avatar', async () => {
+            const { body } = await request(app).get('/api/authors').expect(200)
+        })
+    })
 })
