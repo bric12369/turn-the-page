@@ -129,5 +129,9 @@ describe('app', () => {
             expect(body.author.surname).toBe('Osman')
             expect(body.author.avatar).toBe('example.com/images/aliceosman.jpg')
         })
+        test('returns 400 when id is invalid', async () => {
+            const { body } = await request(app).get('/api/authors/NaN').expect(400)
+            expect(body.msg).toBe('Bad Request: Invalid input')
+        } )
     })
 })

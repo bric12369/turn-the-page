@@ -6,10 +6,14 @@ const getAllAuthors = async (req, res) => {
     res.send({ authors })
 }
 
-const getSingleAuthor = async (req, res) => {
-    const { id } = req.params
-    const author = await fetchSingleAuthor(id)
-    res.send({ author })
+const getSingleAuthor = async (req, res, next) => {
+    try{
+        const { id } = req.params
+        const author = await fetchSingleAuthor(id)
+        res.send({ author })
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getAllAuthors, getSingleAuthor }
