@@ -1,9 +1,11 @@
 const db = require('../db/connection')
 
-const fetchAllAuthors = async () => {
+const fetchAllAuthors = async (order) => {
+
+    const orderClause = order?.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
 
     const query = `SELECT * FROM authors
-        ORDER BY surname`
+        ORDER BY surname ${orderClause}`
 
     const { rows } = await db.query(query)
     
