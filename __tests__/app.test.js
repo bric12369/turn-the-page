@@ -107,5 +107,10 @@ describe('app', () => {
                 expect(author).toHaveProperty('avatar')
             })
         })
+        test('authors are ordered alphabetically by surname', async () => {
+            const { body } = await request(app).get('/api/authors')
+            expect(body.authors[0].surname).toBe('Horowitz')
+            expect(body.authors[body.authors.length-1].surname).toBe('Wells')
+        })
     })
 })

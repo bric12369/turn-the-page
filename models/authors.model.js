@@ -2,7 +2,10 @@ const db = require('../db/connection')
 
 const fetchAllAuthors = async () => {
 
-    const { rows } = await db.query(`SELECT * FROM authors`)
+    const query = `SELECT * FROM authors
+        ORDER BY surname`
+
+    const { rows } = await db.query(query)
     
     return rows
 }
