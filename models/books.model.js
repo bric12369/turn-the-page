@@ -11,7 +11,8 @@ const fetchAllBooks = async (sort, order, author_id) => {
     const validSorts = ['book_name', 'price', 'author']
     const orderClause = order?.toLowerCase() === 'desc' ? 'DESC' : 'ASC'
 
-    let query = `SELECT book_name,
+    let query = `SELECT book_id,
+        book_name,
         publication_date,
         CONCAT(authors.first_name, ' ', authors.surname) AS author,
         isbn,
