@@ -12,4 +12,17 @@ const fetchAllAuthors = async (order) => {
     return rows
 }
 
-module.exports = { fetchAllAuthors }
+const fetchSingleAuthor = async (id) => {
+    
+    const query = `SELECT first_name,
+        surname,
+        avatar
+        FROM authors
+        WHERE author_id = $1`
+    
+    const { rows } = await db.query(query, [id])
+
+    return rows[0]
+}
+
+module.exports = { fetchAllAuthors, fetchSingleAuthor }

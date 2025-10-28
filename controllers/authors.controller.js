@@ -1,4 +1,4 @@
-const { fetchAllAuthors } = require("../models/authors.model")
+const { fetchAllAuthors, fetchSingleAuthor } = require("../models/authors.model")
 
 const getAllAuthors = async (req, res) => {
     const { order } = req.query
@@ -6,4 +6,10 @@ const getAllAuthors = async (req, res) => {
     res.send({ authors })
 }
 
-module.exports = { getAllAuthors }
+const getSingleAuthor = async (req, res) => {
+    const { id } = req.params
+    const author = await fetchSingleAuthor(id)
+    res.send({ author })
+}
+
+module.exports = { getAllAuthors, getSingleAuthor }

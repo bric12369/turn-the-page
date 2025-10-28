@@ -122,4 +122,12 @@ describe('app', () => {
             })
         })
     })
+    describe('GET /api/authors/:id', () => {
+        test('GET request to /api/authors/:id returns a single author with the following properties: first_name, surname, avatar', async () => {
+            const { body } = await request(app).get('/api/authors/1').expect(200)
+            expect(body.author.first_name).toBe('Alice')
+            expect(body.author.surname).toBe('Osman')
+            expect(body.author.avatar).toBe('example.com/images/aliceosman.jpg')
+        })
+    })
 })
