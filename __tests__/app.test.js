@@ -132,6 +132,10 @@ describe('app', () => {
         test('returns 400 when id is invalid', async () => {
             const { body } = await request(app).get('/api/authors/NaN').expect(400)
             expect(body.msg).toBe('Bad Request: Invalid input')
-        } )
+        })
+        test('returns 404 when id does not exist', async () => {
+            const { body } = await request(app).get('/api/authors/1000').expect(404)
+            expect(body.msg).toBe('Not found')
+        })
     })
 })

@@ -22,6 +22,10 @@ const fetchSingleAuthor = async (id) => {
     
     const { rows } = await db.query(query, [id])
 
+    if (!rows.length) {
+        return Promise.reject({status: 404, msg: 'Not found'})
+    }
+
     return rows[0]
 }
 
