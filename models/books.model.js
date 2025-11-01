@@ -61,10 +61,10 @@ const insertBook = async (book_name, publication_date, description, author_id, g
     const values = [book_name, publication_date, description, author_id, genre, condition, isbn, price]
     
     const { rows } = await db.query(`
-        INSERT INTO books (book_name, publication_date, description, author_id, genre, condition, isbn, price) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        INSERT INTO books (book_name, publication_date, description, author_id, genre, condition, isbn, price) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *
         `, values)
 
-    return rows[0]
+    return rows[0].book_id
 
 }
 

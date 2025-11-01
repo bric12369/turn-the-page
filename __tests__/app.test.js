@@ -147,9 +147,9 @@ describe('app', () => {
         })
     })
     describe('POST /api/books', () => {
-        test('successful POST request to /api/books adds new book to db and returns status 201', async () => {
+        test('successful POST request to /api/books adds new book to db and returns status 201 & new book_id', async () => {
             await request(app).get('/api/books/8').expect(404)
-            await request(app).post('/api/books').send({
+            const { body } = await request(app).post('/api/books').send({
                 "book_name": "IT",
                 "publication_date": 1987,
                 "description": "scary clown",
@@ -159,6 +159,7 @@ describe('app', () => {
                 "isbn": "9780451159274",
                 "price": "8.49"
             }).expect(201)
+            expect(body.book_id).toBe(8)
             await request(app).get('/api/books/8').expect(200)
         })
     })
