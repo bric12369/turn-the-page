@@ -215,11 +215,11 @@ describe('app', () => {
         })
     })
     describe('GET /api/genres', () => {
-        test('GET request to /api/genres returns an array of genre objects, each with genre and description properties', async () => {
+        test('GET request to /api/genres returns an array of genre objects in alphabetical order, each with genre and description properties', async () => {
             const { body } = await request(app).get('/api/genres').expect(200)
             console.log(body)
-            expect(body.genres[0].genre).toBe('Fantasy')
-            expect(body.genres[0].description).toBe('Fantasy books transport readers to magical realms filled with mythical creatures, epic quests, and powerful heroes. From ancient prophecies to enchanted lands, the genre sparks imagination and wonder—perfect for those who crave adventure, mystery, and a touch of the impossible in every page. Let the journey begin!')
+            expect(body.genres[0].genre).toBe('Action')
+            expect(body.genres[0].description).toBe('High-octane reads packed with fast-paced plots, daring heroes, and relentless danger. From explosive battles to heart-pounding chases, these stories keep you on the edge of your seat—perfect for thrill-seekers who love adrenaline-fueled adventures and nonstop excitement. Buckle up, it\'s going to get intense.')
         })
     })
 })
