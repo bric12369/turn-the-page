@@ -22,10 +22,15 @@ const getSingleBook = async (req, res, next) => {
     }
 }
 
-const postBook = async (req, res) => {
-    const { book_name, publication_date, description, author_id, genre, condition, isbn, price } = req.body
-    const book_id = await insertBook(book_name, publication_date, description, author_id, genre, condition, isbn, price)
-    res.status(201).send({ book_id })
+const postBook = async (req, res, next) => {
+    try {
+        const { book_name, publication_date, description, author_id, genre, condition, isbn, price } = req.body
+        const book_id = await insertBook(book_name, publication_date, description, author_id, genre, condition, isbn, price)
+        res.status(201).send({ book_id })
+        
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getAllBooks, getSingleBook, postBook }

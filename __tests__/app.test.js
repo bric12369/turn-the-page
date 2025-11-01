@@ -162,5 +162,17 @@ describe('app', () => {
             expect(body.book_id).toBe(8)
             await request(app).get('/api/books/8').expect(200)
         })
+        test('400 bad request when request body is missing a not null variable', async () => {
+            const { body } = await request(app).post('/api/books').send({
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"                
+            }).expect(400)
+            expect(body.msg).toBe('Bad Request: missing input')
+        })
     })
 })
