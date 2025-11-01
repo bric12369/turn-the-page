@@ -74,7 +74,7 @@ describe('app', () => {
                 })
                 test('400 bad request is thrown when author_id is invalid', async () => {
                     const { body } = await request(app).get('/api/books?author_id=NaN').expect(400)
-                    expect(body.msg).toBe('Bad Request: Invalid input')
+                    expect(body.msg).toBe('Bad Request: invalid input')
                 })
                 test('404 not found is thrown with author_id does not exist', async () => {
                     const { body } = await request(app).get('/api/books?author_id=1000').expect(404)
@@ -98,7 +98,7 @@ describe('app', () => {
         })
         test('Throws 400 bad request error when given an invalid id', async () => {
             const { body } = await request(app).get('/api/books/NaN').expect(400)
-            expect(body.msg).toBe('Bad Request: Invalid input')
+            expect(body.msg).toBe('Bad Request: invalid input')
         })
         test('Throws 404 not found when given a valid id which does not exist', async () => {
             const { body } = await request(app).get('/api/books/1000').expect(404)
@@ -139,7 +139,7 @@ describe('app', () => {
         })
         test('returns 400 when id is invalid', async () => {
             const { body } = await request(app).get('/api/authors/NaN').expect(400)
-            expect(body.msg).toBe('Bad Request: Invalid input')
+            expect(body.msg).toBe('Bad Request: invalid input')
         })
         test('returns 404 when id does not exist', async () => {
             const { body } = await request(app).get('/api/authors/1000').expect(404)
@@ -173,6 +173,19 @@ describe('app', () => {
                 "price": "8.49"                
             }).expect(400)
             expect(body.msg).toBe('Bad Request: missing input')
+        })
+        test('400 bad request when an invalid data type is provided for a variable', async () => {
+            const { body } = await request(app).post('/api/books').send({
+                "book_name": "IT",
+                "publication_date": "NaN",
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"                
+            }).expect(400)
+            expect(body.msg).toBe('Bad Request: invalid input') 
         })
     })
 })
