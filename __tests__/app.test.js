@@ -72,6 +72,10 @@ describe('app', () => {
                     const { body } = await request(app).get('/api/books?author_id=NaN').expect(400)
                     expect(body.msg).toBe('Bad Request: Invalid input')
                 })
+                test('404 not found is thrown with author_id does not exist', async () => {
+                    const { body } = await request(app).get('/api/books?author_id=1000').expect(404)
+                    expect(body.msg).toBe('Not found')
+                })
             })
         })       
     })
