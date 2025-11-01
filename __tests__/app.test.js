@@ -142,4 +142,20 @@ describe('app', () => {
             expect(body.msg).toBe('Not found')
         })
     })
+    describe('POST /api/books', () => {
+        test('successful POST request to /api/books adds new book to db and returns status 201', async () => {
+            await request(app).get('/api/books/8').expect(404)
+            await request(app).post('/api/books').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            }).expect(201)
+            await request(app).get('/api/books/8').expect(200)
+        })
+    })
 })

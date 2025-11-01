@@ -56,4 +56,16 @@ const fetchSingleBook = async (id) => {
     return rows[0]
 }
 
-module.exports = { fetchAllBooks, fetchSingleBook }
+const insertBook = async (book_name, publication_date, description, author_id, genre, condition, isbn, price) => {
+
+    const values = [book_name, publication_date, description, author_id, genre, condition, isbn, price]
+    
+    const { rows } = await db.query(`
+        INSERT INTO books (book_name, publication_date, description, author_id, genre, condition, isbn, price) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        `, values)
+
+    return rows[0]
+
+}
+
+module.exports = { fetchAllBooks, fetchSingleBook, insertBook }
