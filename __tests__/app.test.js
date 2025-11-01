@@ -1,7 +1,11 @@
 const app = require('../app')
 const db = require('../db/connection')
 const request = require('supertest')
+const seed = require('../db/seed')
 
+beforeEach(() => {
+    return seed()
+})
 afterAll(() => {
     db.end()
 })
