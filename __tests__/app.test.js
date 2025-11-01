@@ -214,4 +214,12 @@ describe('app', () => {
             expect(body.msg).toBe('Bad Request: invalid input')
         })
     })
+    describe('GET /api/genres', () => {
+        test('GET request to /api/genres returns an array of genre objects, each with genre and description properties', async () => {
+            const { body } = await request(app).get('/api/genres').expect(200)
+            console.log(body)
+            expect(body.genres[0].genre).toBe('Fantasy')
+            expect(body.genres[0].description).toBe('Fantasy books transport readers to magical realms filled with mythical creatures, epic quests, and powerful heroes. From ancient prophecies to enchanted lands, the genre sparks imagination and wonder—perfect for those who crave adventure, mystery, and a touch of the impossible in every page. Let the journey begin!')
+        })
+    })
 })
