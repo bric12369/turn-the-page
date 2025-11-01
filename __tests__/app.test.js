@@ -33,11 +33,11 @@ describe('app', () => {
                 })
                 test('?sort=price orders the books by price', async () => {
                     const { body } = await request(app).get('/api/books?sort=price').expect(200)
-                    expect(body.books[0].book_name).toBe('Stormbreaker - Alex Rider')                    
+                    expect(body.books[0].book_name).toBe('Stormbreaker - Alex Rider')
                 })
                 test('?sort=author orders alphabetically by author name', async () => {
                     const { body } = await request(app).get('/api/books?sort=author').expect(200)
-                    expect(body.books[0].author).toBe('Alice Osman')   
+                    expect(body.books[0].author).toBe('Alice Osman')
                 })
             })
             describe('order', () => {
@@ -59,7 +59,7 @@ describe('app', () => {
                     const { body } = await request(app).get('/api/books?sort=book_name&order=invalid-value').expect(200)
                     expect(body.books[0].book_name).toBe('A Game of Thrones')
                     const { body: body2 } = await request(app).get('/api/books?sort=book_name&order=desc').expect(200)
-                    expect(body2.books[body2.books.length-1].book_name).toBe('A Game of Thrones')
+                    expect(body2.books[body2.books.length - 1].book_name).toBe('A Game of Thrones')
                 })
                 test('400 bad request is thrown when order=desc is provided without a sort value', async () => {
                     const { body } = await request(app).get('/api/books?order=desc').expect(400)
@@ -81,7 +81,7 @@ describe('app', () => {
                     expect(body.msg).toBe('Not found')
                 })
             })
-        })       
+        })
     })
     describe('GET /api/books/:id', () => {
         test('GET request to /api/books/:id returns a single book with matching id with the following properties: book_name, publication date, description, author, genre, condition, condition_description, isbn, price', async () => {
@@ -118,7 +118,7 @@ describe('app', () => {
         test('authors are ordered alphabetically by surname', async () => {
             const { body } = await request(app).get('/api/authors')
             expect(body.authors[0].surname).toBe('Horowitz')
-            expect(body.authors[body.authors.length-1].surname).toBe('Wells')
+            expect(body.authors[body.authors.length - 1].surname).toBe('Wells')
         })
     })
     describe('Queries', () => {
@@ -126,7 +126,7 @@ describe('app', () => {
             test('?order=desc returns authors by surname in reverse alphabetical order', async () => {
                 const { body } = await request(app).get('/api/authors?order=desc').expect(200)
                 expect(body.authors[0].surname).toBe('Wells')
-                expect(body.authors[body.authors.length-1].surname).toBe('Horowitz')                
+                expect(body.authors[body.authors.length - 1].surname).toBe('Horowitz')
             })
         })
     })
@@ -170,7 +170,7 @@ describe('app', () => {
                 "genre": "Horror",
                 "condition": "Very Good",
                 "isbn": "9780451159274",
-                "price": "8.49"                
+                "price": "8.49"
             }).expect(400)
             expect(body.msg).toBe('Bad Request: missing input')
         })
@@ -183,9 +183,35 @@ describe('app', () => {
                 "genre": "Horror",
                 "condition": "Very Good",
                 "isbn": "9780451159274",
-                "price": "8.49"                
+                "price": "8.49"
             }).expect(400)
-            expect(body.msg).toBe('Bad Request: invalid input') 
+            expect(body.msg).toBe('Bad Request: invalid input')
+        })
+        test('404 not found when author_id does not exist', async () => {
+            const { body } = await request(app).post('/api/books').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 1000,
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            }).expect(404)
+            expect(body.msg).toBe('Not found')
+        })
+        test('400 bad request when author_id invalid', async () => {
+            const { body } = await request(app).post('/api/books').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": "NaN",
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            }).expect(400)
+            expect(body.msg).toBe('Bad Request: invalid input')
         })
     })
 })

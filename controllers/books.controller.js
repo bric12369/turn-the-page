@@ -1,5 +1,6 @@
 const { fetchSingleAuthor } = require("../models/authors.model")
 const { fetchAllBooks, fetchSingleBook, insertBook } = require("../models/books.model")
+const { getSingleAuthor } = require("./authors.controller")
 
 const getAllBooks = async (req, res, next) => {
     try {
@@ -25,6 +26,7 @@ const getSingleBook = async (req, res, next) => {
 const postBook = async (req, res, next) => {
     try {
         const { book_name, publication_date, description, author_id, genre, condition, isbn, price } = req.body
+        await fetchSingleAuthor(author_id)
         const book_id = await insertBook(book_name, publication_date, description, author_id, genre, condition, isbn, price)
         res.status(201).send({ book_id })
         
