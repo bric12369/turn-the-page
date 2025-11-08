@@ -293,5 +293,11 @@ describe('app', () => {
             }).expect(201)
             expect(body.genre).toBe('Thriller')
         })
+        test('400 bad request thrown when missing not null input', async () => {
+            const { body } = await request(app).post('/api/genres').send({
+                "genre": "Thriller"
+            }).expect(400)
+            expect(body.msg).toBe('Bad Request: missing input')            
+        })
     })
 })
