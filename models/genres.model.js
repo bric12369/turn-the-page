@@ -34,7 +34,6 @@ const insertGenre = async (genre, description) => {
         VALUES ($1, $2) RETURNING *
         `, values)
 
-    console.log(rows[0],'<<<<<<<<<')
     return rows[0].genre
 }
 

@@ -307,7 +307,7 @@ describe('app', () => {
             }).expect(200)
             expect(body.book.publication_date).toBe(1900)
         })
-        test.only('handles any number of given columns', async () => {
+        test('handles any number of given columns', async () => {
             const { body } = await request(app).patch('/api/books/1').send({
                 "book_name": "IT",
                 "publication_date": 1987,
