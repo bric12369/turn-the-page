@@ -81,6 +81,12 @@ describe('app', () => {
                     expect(body.msg).toBe('Not found')
                 })
             })
+            describe('genre', () => {
+                test('?genre filters books by genre', async () => {
+                    const { body } = await request(app).get('/api/books?genre=Action').expect(200)
+                    expect(body.books.length).toBe(1)
+                })
+            })
         })
     })
     describe('GET /api/books/:id', () => {

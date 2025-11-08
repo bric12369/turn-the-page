@@ -4,9 +4,9 @@ const { getSingleAuthor } = require("./authors.controller")
 
 const getAllBooks = async (req, res, next) => {
     try {
-        const { sort, order, author_id } = req.query
+        const { sort, order, author_id, genre } = req.query
         if (author_id) await fetchSingleAuthor(author_id)
-        const books = await fetchAllBooks(sort, order, author_id)
+        const books = await fetchAllBooks(sort, order, author_id, genre)
         res.send({ books })
     } catch (error) {
         next(error)
