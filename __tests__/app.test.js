@@ -300,4 +300,12 @@ describe('app', () => {
             expect(body.msg).toBe('Bad Request: missing input')            
         })
     })
+    describe('PATCH /api/books/:id', () => {
+        test('Successful PATCH to /api/books/:id updates book with 1 matching column, returns the updated book and status 200', async () => {
+            const { body } = await request(app).patch('/api/books/1').send({
+                "publication_date": 1900
+            }).expect(200)
+            expect(body.book.publication_date).toBe(1900)
+        })
+    })
 })

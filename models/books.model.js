@@ -72,4 +72,24 @@ const insertBook = async (book_name, publication_date, description, author_id, g
 
 }
 
-module.exports = { fetchAllBooks, fetchSingleBook, insertBook }
+const updateBook = async (id, publication_date) => {
+    
+    const values = [id]
+
+    if (publication_date) {
+        values.push(publication_date)
+    }
+
+    // console.log(values)
+
+    const { rows } = await db.query(`
+        UPDATE books
+        SET publication_date = $${values.length}
+        WHERE book_id = $1
+        RETURNING *
+        `, values)
+    
+    return rows[0]
+}
+
+module.exports = { fetchAllBooks, fetchSingleBook, insertBook, updateBook }
