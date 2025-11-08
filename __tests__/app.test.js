@@ -277,5 +277,12 @@ describe('app', () => {
             }).expect(201)   
             expect(body.author_id).toBe(8)
         })
+        test('400 bad request thrown when missing not null input', async () => {
+            const { body } = await request(app).post('/api/authors').send({
+                "first_name": "Charles",
+                "avatar": "example.com/images/charlesdickens.jpg"
+            }).expect(400)
+            expect(body.msg).toBe('Bad Request: missing input')
+        })
     })
 })
