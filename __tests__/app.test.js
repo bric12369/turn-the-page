@@ -223,6 +223,19 @@ describe('app', () => {
             }).expect(400)
             expect(body.msg).toBe('Bad Request: invalid input')
         })
+        test('404 not found thrown when genre does not exist', async () => {
+            const { body } = await request(app).post('/api/books').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "non-existent-genre",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            }).expect(404)   
+            expect(body.msg).toBe('Not found')         
+        })
     })
     describe('GET /api/genres', () => {
         test('GET request to /api/genres returns an array of genre objects in alphabetical order, each with genre and description properties', async () => {

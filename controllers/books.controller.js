@@ -28,6 +28,7 @@ const postBook = async (req, res, next) => {
     try {
         const { book_name, publication_date, description, author_id, genre, condition, isbn, price } = req.body
         await fetchSingleAuthor(author_id)
+        await fetchSingleGenre(genre)
         const book_id = await insertBook(book_name, publication_date, description, author_id, genre, condition, isbn, price)
         res.status(201).send({ book_id })
         
