@@ -233,5 +233,9 @@ describe('app', () => {
             expect(body.genre.genre).toBe('Action')
             expect(body.genre.description).toBe('High-octane reads packed with fast-paced plots, daring heroes, and relentless danger. From explosive battles to heart-pounding chases, these stories keep you on the edge of your seat—perfect for thrill-seekers who love adrenaline-fueled adventures and nonstop excitement. Buckle up, it\'s going to get intense.')
         })
+        test('404 not not found thrown when no matching genre found', async () => {
+            const { body } = await request(app).get('/api/genres/non-existent-genre').expect(404)
+            expect(body.msg).toBe('Not found')
+        })
     })
 })

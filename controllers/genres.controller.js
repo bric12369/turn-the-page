@@ -5,10 +5,14 @@ const getGenres = async (req, res) => {
     res.send({ genres })
 }
 
-const getSingleGenre = async (req, res) => {
-    const { genre } = req.params
-    const matchingGenre = await fetchSingleGenre(genre)
-    res.send({ genre: matchingGenre })
+const getSingleGenre = async (req, res, next) => {
+    try {
+        const { genre } = req.params
+        const matchingGenre = await fetchSingleGenre(genre)
+        res.send({ genre: matchingGenre })
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getGenres, getSingleGenre }

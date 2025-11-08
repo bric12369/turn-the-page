@@ -18,6 +18,10 @@ const fetchSingleGenre = async (genre) => {
         WHERE genre = $1
         `, [genre])
     
+    if (!rows.length) {
+        return Promise.reject({status: 404, msg: 'Not found'})
+    }
+    
     return rows[0]
 }
 
