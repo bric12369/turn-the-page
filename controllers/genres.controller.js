@@ -1,4 +1,4 @@
-const { fetchGenres, fetchSingleGenre } = require("../models/genres.model")
+const { fetchGenres, fetchSingleGenre, insertGenre } = require("../models/genres.model")
 
 const getGenres = async (req, res) => {
     const genres = await fetchGenres()
@@ -15,4 +15,10 @@ const getSingleGenre = async (req, res, next) => {
     }
 }
 
-module.exports = { getGenres, getSingleGenre }
+const postGenre = async (req, res) => {
+    const { genre, description } = req.body
+    const postedGenre = await insertGenre(genre, description)
+    res.status(201).send({ genre: postedGenre })
+}
+
+module.exports = { getGenres, getSingleGenre, postGenre }

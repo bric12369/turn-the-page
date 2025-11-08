@@ -285,4 +285,13 @@ describe('app', () => {
             expect(body.msg).toBe('Bad Request: missing input')
         })
     })
+    describe('POST /api/genres', () => {
+        test('Successful POST to /api/genres returns status 201 and the genre', async () => {
+            const { body } = await request(app).post('/api/genres').send({
+                "genre": "Thriller",
+                "description": "A genre of fiction with numerous, often overlapping, subgenres, including crime, horror, and detective fiction. Thrillers are characterized and defined by the moods they elicit, giving their audiences heightened feelings of suspense, excitement, surprise, anticipation and anxiety."
+            }).expect(201)
+            expect(body.genre).toBe('Thriller')
+        })
+    })
 })

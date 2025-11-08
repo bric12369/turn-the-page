@@ -25,4 +25,17 @@ const fetchSingleGenre = async (genre) => {
     return rows[0]
 }
 
-module.exports = { fetchGenres, fetchSingleGenre }
+const insertGenre = async (genre, description) => {
+    
+    const values = [genre, description]
+
+    const { rows } = await db.query(`
+        INSERT INTO genres (genre, description)
+        VALUES ($1, $2) RETURNING *
+        `, values)
+
+    console.log(rows[0],'<<<<<<<<<')
+    return rows[0].genre
+}
+
+module.exports = { fetchGenres, fetchSingleGenre, insertGenre }
