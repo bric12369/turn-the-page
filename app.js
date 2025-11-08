@@ -1,6 +1,6 @@
 const express = require('express')
 const { getAllBooks, getSingleBook, postBook } = require('./controllers/books.controller')
-const { handleCustomErrors, handleBadRequest } = require('./controllers/errors.controller')
+const { handleCustomErrors, handleBadRequest, handleNotFound } = require('./controllers/errors.controller')
 const { getAllAuthors, getSingleAuthor } = require('./controllers/authors.controller')
 const { getGenres, getSingleGenre } = require('./controllers/genres.controller')
 
@@ -29,5 +29,7 @@ app.post('/api/books', postBook)
 app.use(handleCustomErrors)
 
 app.use(handleBadRequest)
+
+app.use(handleNotFound)
 
 module.exports = app

@@ -81,7 +81,7 @@ describe('app', () => {
                     expect(body.msg).toBe('Not found')
                 })
             })
-            describe.only('genre', () => {
+            describe('genre', () => {
                 test('?genre filters books by genre', async () => {
                     const { body } = await request(app).get('/api/books?genre=Action').expect(200)
                     expect(body.books.length).toBe(1)
@@ -236,6 +236,19 @@ describe('app', () => {
             }).expect(404)   
             expect(body.msg).toBe('Not found')         
         })
+        test('404 not found thrown when condition does not exist', async () => {
+            const { body } = await request(app).post('/api/books').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "Horror",
+                "condition": "non-existent-condition",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            }).expect(404)   
+            expect(body.msg).toBe('Not found - foreign key violation')         
+        })        
     })
     describe('GET /api/genres', () => {
         test('GET request to /api/genres returns an array of genre objects in alphabetical order, each with genre and description properties', async () => {
