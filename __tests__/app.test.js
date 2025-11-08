@@ -130,13 +130,13 @@ describe('app', () => {
             expect(body.authors[0].surname).toBe('Horowitz')
             expect(body.authors[body.authors.length - 1].surname).toBe('Wells')
         })
-    })
-    describe('Queries', () => {
-        describe('order', () => {
-            test('?order=desc returns authors by surname in reverse alphabetical order', async () => {
-                const { body } = await request(app).get('/api/authors?order=desc').expect(200)
-                expect(body.authors[0].surname).toBe('Wells')
-                expect(body.authors[body.authors.length - 1].surname).toBe('Horowitz')
+        describe('Queries', () => {
+            describe('order', () => {
+                test('?order=desc returns authors by surname in reverse alphabetical order', async () => {
+                    const { body } = await request(app).get('/api/authors?order=desc').expect(200)
+                    expect(body.authors[0].surname).toBe('Wells')
+                    expect(body.authors[body.authors.length - 1].surname).toBe('Horowitz')
+                })
             })
         })
     })
