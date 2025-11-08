@@ -11,4 +11,14 @@ const fetchGenres = async () => {
     return rows
 }
 
-module.exports = { fetchGenres }
+const fetchSingleGenre = async (genre) => {
+    
+    const { rows } = await db.query(`
+        SELECT * FROM genres
+        WHERE genre = $1
+        `, [genre])
+    
+    return rows[0]
+}
+
+module.exports = { fetchGenres, fetchSingleGenre }

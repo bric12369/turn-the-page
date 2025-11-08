@@ -223,9 +223,15 @@ describe('app', () => {
     describe('GET /api/genres', () => {
         test('GET request to /api/genres returns an array of genre objects in alphabetical order, each with genre and description properties', async () => {
             const { body } = await request(app).get('/api/genres').expect(200)
-            console.log(body)
             expect(body.genres[0].genre).toBe('Action')
             expect(body.genres[0].description).toBe('High-octane reads packed with fast-paced plots, daring heroes, and relentless danger. From explosive battles to heart-pounding chases, these stories keep you on the edge of your seat—perfect for thrill-seekers who love adrenaline-fueled adventures and nonstop excitement. Buckle up, it\'s going to get intense.')
+        })
+    })
+    describe('GET /api/genres/:genre', () => {
+        test('GET request to /api/genres/:genre returns single genre with matching id with genre and description properties', async () => {
+            const { body } = await request(app).get('/api/genres/Action').expect(200)
+            expect(body.genre.genre).toBe('Action')
+            expect(body.genre.description).toBe('High-octane reads packed with fast-paced plots, daring heroes, and relentless danger. From explosive battles to heart-pounding chases, these stories keep you on the edge of your seat—perfect for thrill-seekers who love adrenaline-fueled adventures and nonstop excitement. Buckle up, it\'s going to get intense.')
         })
     })
 })
