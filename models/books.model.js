@@ -72,19 +72,18 @@ const insertBook = async (book_name, publication_date, description, author_id, g
 
 }
 
-const updateBook = async (id, publication_date) => {
+const updateBook = async (id, body) => {
+
     
-    const values = [id]
+    const columns = Object.keys(body)
+    const values = Object.values(body)
+    values.unshift(id)
 
-    if (publication_date) {
-        values.push(publication_date)
-    }
-
-    // console.log(values)
+    const setClause = columns.map((column, i) => `${column} = $${i+2}`).join(', ')
 
     const { rows } = await db.query(`
         UPDATE books
-        SET publication_date = $${values.length}
+        SET ${setClause}
         WHERE book_id = $1
         RETURNING *
         `, values)

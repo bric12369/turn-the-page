@@ -233,8 +233,8 @@ describe('app', () => {
                 "condition": "Very Good",
                 "isbn": "9780451159274",
                 "price": "8.49"
-            }).expect(404)   
-            expect(body.msg).toBe('Not found')         
+            }).expect(404)
+            expect(body.msg).toBe('Not found')
         })
         test('404 not found thrown when condition does not exist', async () => {
             const { body } = await request(app).post('/api/books').send({
@@ -246,9 +246,9 @@ describe('app', () => {
                 "condition": "non-existent-condition",
                 "isbn": "9780451159274",
                 "price": "8.49"
-            }).expect(404)   
-            expect(body.msg).toBe('Not found - foreign key violation')         
-        })        
+            }).expect(404)
+            expect(body.msg).toBe('Not found - foreign key violation')
+        })
     })
     describe('GET /api/genres', () => {
         test('GET request to /api/genres returns an array of genre objects in alphabetical order, each with genre and description properties', async () => {
@@ -274,7 +274,7 @@ describe('app', () => {
                 "first_name": "Charles",
                 "surname": "Dickens",
                 "avatar": "example.com/images/charlesdickens.jpg"
-            }).expect(201)   
+            }).expect(201)
             expect(body.author_id).toBe(8)
         })
         test('400 bad request thrown when missing not null input', async () => {
@@ -297,7 +297,7 @@ describe('app', () => {
             const { body } = await request(app).post('/api/genres').send({
                 "genre": "Thriller"
             }).expect(400)
-            expect(body.msg).toBe('Bad Request: missing input')            
+            expect(body.msg).toBe('Bad Request: missing input')
         })
     })
     describe('PATCH /api/books/:id', () => {
@@ -306,6 +306,29 @@ describe('app', () => {
                 "publication_date": 1900
             }).expect(200)
             expect(body.book.publication_date).toBe(1900)
+        })
+        test.only('handles any number of given columns', async () => {
+            const { body } = await request(app).patch('/api/books/1').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            })
+            expect(body.book).toEqual({
+                book_id: 1,
+                book_name: 'IT',
+                publication_date: 1987,
+                description: 'scary clown',
+                author_id: 3,
+                genre: 'Horror',
+                condition: 'Very Good',
+                isbn: '9780451159274',
+                price: '8.49'
+            })
         })
     })
 })

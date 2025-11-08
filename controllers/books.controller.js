@@ -39,8 +39,8 @@ const postBook = async (req, res, next) => {
 
 const patchBook = async (req, res) => {
     const { id } = req.params
-    const { publication_date } = req.body
-    const book = await updateBook(id, publication_date)
+    const body = req.body
+    const book = await updateBook(id, body)
     res.send({ book })
 }
 
