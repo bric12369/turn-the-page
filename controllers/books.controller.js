@@ -1,11 +1,12 @@
 const { fetchSingleAuthor } = require("../models/authors.model")
 const { fetchAllBooks, fetchSingleBook, insertBook } = require("../models/books.model")
-const { getSingleAuthor } = require("./authors.controller")
+const { fetchSingleGenre } = require("../models/genres.model")
 
 const getAllBooks = async (req, res, next) => {
     try {
         const { sort, order, author_id, genre } = req.query
         if (author_id) await fetchSingleAuthor(author_id)
+        if (genre) await fetchSingleGenre(genre)
         const books = await fetchAllBooks(sort, order, author_id, genre)
         res.send({ books })
     } catch (error) {

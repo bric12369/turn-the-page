@@ -81,10 +81,14 @@ describe('app', () => {
                     expect(body.msg).toBe('Not found')
                 })
             })
-            describe('genre', () => {
+            describe.only('genre', () => {
                 test('?genre filters books by genre', async () => {
                     const { body } = await request(app).get('/api/books?genre=Action').expect(200)
                     expect(body.books.length).toBe(1)
+                })
+                test('404 not found thrown when no matching genre found', async () => {
+                    const { body } = await request(app).get('/api/books?genre=non-existent-genre').expect(404)
+                    expect(body.msg).toBe('Not found')
                 })
             })
         })
