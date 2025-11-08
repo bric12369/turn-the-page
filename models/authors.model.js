@@ -29,4 +29,17 @@ const fetchSingleAuthor = async (id) => {
     return rows[0]
 }
 
-module.exports = { fetchAllAuthors, fetchSingleAuthor }
+const insertAuthor = async (first_name, surname, avatar) => {
+
+    const values = [first_name, surname, avatar]
+    
+    const { rows } = await db.query(`
+        INSERT INTO authors (first_name, surname, avatar)
+        VALUES ($1, $2, $3) RETURNING *
+        `, values)
+
+    return rows[0].author_id
+
+}
+
+module.exports = { fetchAllAuthors, fetchSingleAuthor, insertAuthor }

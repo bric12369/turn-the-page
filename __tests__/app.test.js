@@ -268,4 +268,14 @@ describe('app', () => {
             expect(body.msg).toBe('Not found')
         })
     })
+    describe('POST /api/authors', () => {
+        test('Successful POST to /api/authors adds new author to db, returns status 201 and new author_id', async () => {
+            const { body } = await request(app).post('/api/authors').send({
+                "first_name": "Charles",
+                "surname": "Dickens",
+                "avatar": "example.com/images/charlesdickens.jpg"
+            }).expect(201)   
+            expect(body.author_id).toBe(8)
+        })
+    })
 })
