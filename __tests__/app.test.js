@@ -354,7 +354,7 @@ describe('app', () => {
                 "isbn": "9780451159274",
                 "price": "8.49"
             }).expect(404)
-            expect(body.msg).toBe('Not found')            
+            expect(body.msg).toBe('Not found')
         })
         test('400 bad request when given an invalid author_id or publication_date', async () => {
             const { body } = await request(app).patch('/api/books/1').send({
@@ -364,7 +364,7 @@ describe('app', () => {
             const { body: body2 } = await request(app).patch('/api/books/1').send({
                 "publication_date": "NaN"
             }).expect(400)
-            expect(body2.msg).toBe('Bad Request: invalid input')         
+            expect(body2.msg).toBe('Bad Request: invalid input')
         })
         test('404 not found when given an author_id, genre or condition which does not exist', async () => {
             const { body } = await request(app).patch('/api/books/1').send({
@@ -378,7 +378,28 @@ describe('app', () => {
             const { body: body3 } = await request(app).patch('/api/books/1').send({
                 "condition": "non-existent-condition"
             }).expect(404)
-            expect(body3.msg).toBe('Not found - foreign key violation')                        
+            expect(body3.msg).toBe('Not found - foreign key violation')
+        })
+    })
+    describe('PATCH /api/authors/:id', () => {
+        test('Successful PATCH to /api/authors/:id returns updated author and status 200', async () => {
+            const { body } = await request(app).patch('/api/authors/1').send({
+                "first_name": "Barry"
+            }).expect(200)
+            expect(body.author.first_name).toBe('Barry')
+        })
+        test('Handles any number of given columns', async () => {
+            const { body } = await request(app).patch('/api/authors/1').send({
+                "first_name": "Barry",
+                "surname": "Smith",
+                "avatar": "example.com/images/barrysmith.jpg"
+            }).expect(200)
+            expect(body.author).toEqual({
+                "author_id": 1,
+                "first_name": "Barry",
+                "surname": "Smith",
+                "avatar": "example.com/images/barrysmith.jpg"
+            })
         })
     })
 })

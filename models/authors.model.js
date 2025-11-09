@@ -42,4 +42,22 @@ const insertAuthor = async (first_name, surname, avatar) => {
 
 }
 
-module.exports = { fetchAllAuthors, fetchSingleAuthor, insertAuthor }
+const updateAuthor = async (id, body) => {
+    
+    const columns = Object.keys(body)
+    const values = Object.values(body)
+    values.unshift(id)
+    
+    const setClause = columns.map((column, i) => `${column} = $${i+2}`).join(', ')
+
+    const { rows } = await db.query(`
+        UPDATE authors
+        SET ${setClause}
+        WHERE author_id = $1
+        RETURNING *
+        `, values)
+
+    return rows[0]
+}
+
+module.exports = { fetchAllAuthors, fetchSingleAuthor, insertAuthor, updateAuthor }
