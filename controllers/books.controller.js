@@ -37,11 +37,15 @@ const postBook = async (req, res, next) => {
     }
 }
 
-const patchBook = async (req, res) => {
-    const { id } = req.params
-    const body = req.body
-    const book = await updateBook(id, body)
-    res.send({ book })
+const patchBook = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const body = req.body
+        const book = await updateBook(id, body)
+        res.send({ book })
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getAllBooks, getSingleBook, postBook, patchBook }

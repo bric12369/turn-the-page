@@ -330,5 +330,17 @@ describe('app', () => {
                 price: '8.49'
             })
         })
+        test('400 bad request when book id invalid', async () => {
+            const { body } = await request(app).patch('/api/books/NaN').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            }).expect(400)
+        })
     })
 })
