@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/bric12369/turn-the-page#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "pg": "^8.16.3",
