@@ -22,11 +22,16 @@ const postAuthor = async (req, res) => {
     res.status(201).send({ author_id })
 }
 
-const patchAuthor = async (req, res) => {
-    const { id } = req.params
-    const body = req.body
-    const author = await updateAuthor(id, body)
-    res.send({ author })
+const patchAuthor = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        await fetchSingleAuthor(id)
+        const body = req.body
+        const author = await updateAuthor(id, body)
+        res.send({ author })
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getAllAuthors, getSingleAuthor, postAuthor, patchAuthor }

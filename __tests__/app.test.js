@@ -401,5 +401,17 @@ describe('app', () => {
                 "avatar": "example.com/images/barrysmith.jpg"
             })
         })
+        test('400 bad request when given an invalid author id', async () => {
+            const { body } = await request(app).patch('/api/authors/NaN').send({
+                "first_name": "Barry"
+            }).expect(400)
+            expect(body.msg).toBe('Bad Request: invalid input')
+        })
+        test('404 not found when given an author_id which does not exist', async () => {
+            const { body } = await request(app).patch('/api/authors/1000').send({
+                "first_name": "Barry"
+            }).expect(404)
+            expect(body.msg).toBe('Not found')
+        })
     })
 })
