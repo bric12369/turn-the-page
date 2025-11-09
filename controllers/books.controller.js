@@ -40,6 +40,7 @@ const postBook = async (req, res, next) => {
 const patchBook = async (req, res, next) => {
     try {
         const { id } = req.params
+        await fetchSingleBook(id)
         const body = req.body
         const book = await updateBook(id, body)
         res.send({ book })

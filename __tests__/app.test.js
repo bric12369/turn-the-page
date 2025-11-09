@@ -341,6 +341,20 @@ describe('app', () => {
                 "isbn": "9780451159274",
                 "price": "8.49"
             }).expect(400)
+            expect(body.msg).toBe('Bad Request: invalid input')
+        })
+        test('404 not found when book id does not exist', async () => {
+            const { body } = await request(app).patch('/api/books/1000').send({
+                "book_name": "IT",
+                "publication_date": 1987,
+                "description": "scary clown",
+                "author_id": 3,
+                "genre": "Horror",
+                "condition": "Very Good",
+                "isbn": "9780451159274",
+                "price": "8.49"
+            }).expect(404)
+            expect(body.msg).toBe('Not found')            
         })
     })
 })
