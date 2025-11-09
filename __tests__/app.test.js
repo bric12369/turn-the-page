@@ -415,9 +415,17 @@ describe('app', () => {
         })
     })
     describe('DELETE /api/books/:id', () => {
-        test.only('Successful DELETE to /api/books/:id returns 204 and deletes corresponding book', async () => {
+        test('Successful DELETE to /api/books/:id returns 204 and deletes corresponding book', async () => {
             await request(app).delete('/api/books/1').expect(204)
             await request(app).get('/api/books/1').expect(404)
+        })
+        test('400 bad request when given an invalid book id', async () => {
+            const { body } = await request(app).delete('/api/books/NaN').expect(400)
+            expect(body.msg).toBe('Bad Request: invalid input')
+        })
+        test('404 not found when given a book_id which does not exist', async () => {
+            const { body } = await request(app).delete('/api/books/1000').expect(404)
+            expect(body.msg).toBe('Not found')
         })
     })
 })

@@ -45,15 +45,19 @@ const patchBook = async (req, res, next) => {
         const book = await updateBook(id, body)
         res.send({ book })
     } catch (error) {
-        console.log(error)
         next(error)
     }
 }
 
-const deleteBook = async (req, res) => {
-    const { id } = req.params
-    await removeBook(id)
-    res.status(204).send()
+const deleteBook = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        await fetchSingleBook(id)
+        await removeBook(id)
+        res.status(204).send()
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getAllBooks, getSingleBook, postBook, patchBook, deleteBook }
