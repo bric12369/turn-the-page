@@ -356,5 +356,15 @@ describe('app', () => {
             }).expect(404)
             expect(body.msg).toBe('Not found')            
         })
+        test('400 bad request when given an invalid author_id or publication_date', async () => {
+            const { body } = await request(app).patch('/api/books/1').send({
+                "author_id": 'NaN'
+            }).expect(400)
+            expect(body.msg).toBe('Bad Request: invalid input')
+            const { body: body2 } = await request(app).patch('/api/books/1').send({
+                "publication_date": "NaN"
+            }).expect(400)
+            expect(body2.msg).toBe('Bad Request: invalid input')         
+        })
     })
 })
