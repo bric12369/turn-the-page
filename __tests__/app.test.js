@@ -414,4 +414,10 @@ describe('app', () => {
             expect(body.msg).toBe('Not found')
         })
     })
+    describe('DELETE /api/books/:id', () => {
+        test.only('Successful DELETE to /api/books/:id returns 204 and deletes corresponding book', async () => {
+            await request(app).delete('/api/books/1').expect(204)
+            await request(app).get('/api/books/1').expect(404)
+        })
+    })
 })

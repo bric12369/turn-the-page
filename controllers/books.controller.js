@@ -1,5 +1,5 @@
 const { fetchSingleAuthor } = require("../models/authors.model")
-const { fetchAllBooks, fetchSingleBook, insertBook, updateBook } = require("../models/books.model")
+const { fetchAllBooks, fetchSingleBook, insertBook, updateBook, removeBook } = require("../models/books.model")
 const { fetchSingleGenre } = require("../models/genres.model")
 
 const getAllBooks = async (req, res, next) => {
@@ -50,4 +50,10 @@ const patchBook = async (req, res, next) => {
     }
 }
 
-module.exports = { getAllBooks, getSingleBook, postBook, patchBook }
+const deleteBook = async (req, res) => {
+    const { id } = req.params
+    await removeBook(id)
+    res.status(204).send()
+}
+
+module.exports = { getAllBooks, getSingleBook, postBook, patchBook, deleteBook }

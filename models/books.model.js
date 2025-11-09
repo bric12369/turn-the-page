@@ -91,4 +91,14 @@ const updateBook = async (id, body) => {
     return rows[0]
 }
 
-module.exports = { fetchAllBooks, fetchSingleBook, insertBook, updateBook }
+const removeBook = async (id) => {
+    
+    const { rows } = await db.query(`
+        DELETE FROM books
+        WHERE book_id = $1
+        `, [id])
+
+    return
+}
+
+module.exports = { fetchAllBooks, fetchSingleBook, insertBook, updateBook, removeBook }

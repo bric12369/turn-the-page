@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllBooks, getSingleBook, postBook, patchBook } = require('./controllers/books.controller')
+const { getAllBooks, getSingleBook, postBook, patchBook, deleteBook } = require('./controllers/books.controller')
 const { handleCustomErrors, handleBadRequest, handleNotFound } = require('./controllers/errors.controller')
 const { getAllAuthors, getSingleAuthor, postAuthor, patchAuthor } = require('./controllers/authors.controller')
 const { getGenres, getSingleGenre, postGenre } = require('./controllers/genres.controller')
@@ -33,6 +33,8 @@ app.post('/api/genres', postGenre)
 app.patch('/api/books/:id', patchBook)
 
 app.patch('/api/authors/:id', patchAuthor)
+
+app.delete('/api/books/:id', deleteBook)
 
 app.use(handleCustomErrors)
 
