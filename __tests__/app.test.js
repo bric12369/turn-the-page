@@ -366,5 +366,19 @@ describe('app', () => {
             }).expect(400)
             expect(body2.msg).toBe('Bad Request: invalid input')         
         })
+        test('404 not found when given an author_id, genre or condition which does not exist', async () => {
+            const { body } = await request(app).patch('/api/books/1').send({
+                "author_id": 1000
+            }).expect(404)
+            expect(body.msg).toBe('Not found - foreign key violation')
+            const { body: body2 } = await request(app).patch('/api/books/1').send({
+                "genre": "non-existent-genre"
+            }).expect(404)
+            expect(body2.msg).toBe('Not found - foreign key violation')
+            const { body: body3 } = await request(app).patch('/api/books/1').send({
+                "condition": "non-existent-condition"
+            }).expect(404)
+            expect(body3.msg).toBe('Not found - foreign key violation')                        
+        })
     })
 })

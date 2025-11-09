@@ -45,6 +45,7 @@ const patchBook = async (req, res, next) => {
         const book = await updateBook(id, body)
         res.send({ book })
     } catch (error) {
+        console.log(error)
         next(error)
     }
 }
