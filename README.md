@@ -31,3 +31,13 @@ PGDATABASE=turn_the_page_test
 ```
 npm run seed
 ```
+
+### 5: Run the Development Server
+
+To start the server locally, run:
+
+```
+npm start
+```
+
+Then go to ```localhost:3000``` in your browser or API client (e.g. Postman) to explore different endpoints.
