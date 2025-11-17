@@ -3,6 +3,7 @@ const { getAllBooks, getSingleBook, postBook, patchBook, deleteBook } = require(
 const { handleCustomErrors, handleBadRequest, handleNotFound } = require('./controllers/errors.controller')
 const { getAllAuthors, getSingleAuthor, postAuthor, patchAuthor } = require('./controllers/authors.controller')
 const { getGenres, getSingleGenre, postGenre } = require('./controllers/genres.controller')
+const { getAllUsers } = require('./controllers/users.controller')
 
 const app = express()
 
@@ -23,6 +24,8 @@ app.get('/api/authors/:id', getSingleAuthor)
 app.get('/api/genres', getGenres)
 
 app.get('/api/genres/:genre', getSingleGenre)
+
+app.get('/api/users', getAllUsers)
 
 app.post('/api/books', postBook)
 

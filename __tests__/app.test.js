@@ -428,4 +428,13 @@ describe('app', () => {
             expect(body.msg).toBe('Not found')
         })
     })
+    describe('GET /api/users', () => {
+        test('GET request to /api/users returns list of users, each with the following properties: first_name, surname, email, role', async () => {
+            const { body } = await request(app).get('/api/users').expect(200)
+            expect(body.users[0].first_name).toBe('Admin')
+            expect(body.users[0].surname).toBe('1')
+            expect(body.users[0].email).toBe('admin1@example.com')
+            expect(body.users[0].role).toBe('admin')
+        })
+    })
 })
