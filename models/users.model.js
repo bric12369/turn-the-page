@@ -25,6 +25,10 @@ const fetchSingleUser = async (id) => {
         FROM users
         WHERE user_id = $1
         `, [id])
+    
+    if (!rows.length) {
+        return Promise.reject({ status: 404, msg: 'Not found' })
+    }
 
     return rows[0]
 }

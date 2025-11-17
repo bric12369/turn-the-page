@@ -444,5 +444,13 @@ describe('app', () => {
             expect(body.user.surname).toBe('1')
             expect(body.user.email).toBe('admin1@example.com')
         })
+        test('returns 400 when given an invalid id', async () => {
+            const { body } = await request(app).get('/api/users/NaN').expect(400)
+            expect(body.msg).toBe('Bad Request: invalid input')
+        })
+        test('returns 404 when given an id which does not exist', async () => {
+            const { body } = await request(app).get('/api/users/1000').expect(404)
+            expect(body.msg).toBe('Not found')
+        })
     })
 })

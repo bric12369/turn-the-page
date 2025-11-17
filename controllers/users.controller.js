@@ -5,10 +5,14 @@ const getAllUsers = async (req, res) => {
     res.send({ users })
 }
 
-const getSingleUser = async (req, res) => {
-    const { id } = req.params
-    const user = await fetchSingleUser(id)
-    res.send({ user })
+const getSingleUser = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const user = await fetchSingleUser(id)
+        res.send({ user })
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = { getAllUsers, getSingleUser }
