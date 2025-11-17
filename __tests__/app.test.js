@@ -437,4 +437,12 @@ describe('app', () => {
             expect(body.users[0].role).toBe('admin')
         })
     })
+    describe('GET /api/users/:id', () => {
+        test('GET request to /api/users/:id returns single matching user with the following properties: first_name, surname, email, role', async () => {
+            const { body } = await request(app).get('/api/users/1').expect(200)
+            expect(body.user.first_name).toBe('Admin')
+            expect(body.user.surname).toBe('1')
+            expect(body.user.email).toBe('admin1@example.com')
+        })
+    })
 })

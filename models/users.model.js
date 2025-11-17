@@ -15,4 +15,18 @@ const fetchAllUsers = async () => {
     return rows
 }
 
-module.exports = { fetchAllUsers }
+const fetchSingleUser = async (id) => {
+    
+    const { rows } = await db.query(`
+        SELECT first_name,
+        surname,
+        email,
+        role
+        FROM users
+        WHERE user_id = $1
+        `, [id])
+
+    return rows[0]
+}
+
+module.exports = { fetchAllUsers, fetchSingleUser }
