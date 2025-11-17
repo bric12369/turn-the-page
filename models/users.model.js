@@ -9,6 +9,7 @@ const fetchAllUsers = async () => {
         email,
         role
         FROM users
+        ORDER BY surname
         `)
     
     return rows
